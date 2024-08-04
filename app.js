@@ -239,7 +239,6 @@ app.get(
     const getUserIdQuery = `select user_id from user where username='${username}';`;
     const getUserId = await database.get(getUserIdQuery);
     //console.log(getUserId);
-    //get the ids of whom thw use is following
     const getFollowingIdsQuery = `select following_user_id from follower where follower_user_id=${getUserId.user_id};`;
     const getFollowingIdsArray = await database.all(getFollowingIdsQuery);
     //console.log(getFollowingIdsArray);
@@ -372,7 +371,6 @@ app.post("/user/tweets/", authenticationToken, async (request, response) => {
 });
 
 /*
-//to check if the tweet got updated
 app.get("/tweets/", authenticationToken, async (request, response) => {
   const requestQuery = `select * from tweet;`;
   const responseResult = await database.all(requestQuery);
